@@ -1,10 +1,10 @@
 import React from 'react';
-import SearchForm from './SearchForm';
+import { InternalSearchForm as SearchForm } from './SearchForm';
 
 const noop = () => {};
 
 export default {
-  title: 'Search',
+  title: '2 - SearchForm',
   component: SearchForm,
   parameters: {
     notes: 'Search component.'
@@ -12,7 +12,12 @@ export default {
 };
 
 export const Desktop1024x768 = () => (
-  <SearchForm searchTerm="test" handleSearch={noop} handleSearchChange={noop} />
+  <SearchForm
+    search="test"
+    handleSearch={noop}
+    handleUpdate={noop}
+    disabled={false}
+  />
 );
 Desktop1024x768.story = {
   parameters: {
@@ -21,12 +26,7 @@ Desktop1024x768.story = {
 };
 
 export const DesktopDisabled = () => (
-  <SearchForm
-    searchTerm="test"
-    handleSearch={noop}
-    handleSearchChange={noop}
-    disabled
-  />
+  <SearchForm search="test" handleSearch={noop} handleUpdate={noop} disabled />
 );
 DesktopDisabled.story = {
   parameters: {
@@ -35,7 +35,12 @@ DesktopDisabled.story = {
 };
 
 export const Ipad = () => (
-  <SearchForm searchTerm="test" handleSearch={noop} handleSearchChange={noop} />
+  <SearchForm
+    search="test"
+    handleSearch={noop}
+    handleUpdate={noop}
+    disabled={false}
+  />
 );
 Ipad.story = {
   parameters: {
@@ -44,7 +49,12 @@ Ipad.story = {
 };
 
 export const Width640px = () => (
-  <SearchForm searchTerm="test" handleSearch={noop} handleSearchChange={noop} />
+  <SearchForm
+    search="test"
+    handleSearch={noop}
+    handleUpdate={noop}
+    disabled={false}
+  />
 );
 Width640px.story = {
   parameters: {
@@ -53,7 +63,12 @@ Width640px.story = {
 };
 
 export const Mobile = () => (
-  <SearchForm searchTerm="test" handleSearch={noop} handleSearchChange={noop} />
+  <SearchForm
+    search="test"
+    handleSearch={noop}
+    handleUpdate={noop}
+    disabled={false}
+  />
 );
 Mobile.story = {
   parameters: {

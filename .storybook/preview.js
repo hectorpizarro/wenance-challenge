@@ -2,7 +2,7 @@ import React from 'react';
 import { addDecorator, addParameters } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../src/shared/conf';
-import { GlobalStyle } from '../src/App';
+import GlobalStyle from '../src/shared/GlobalStyle';
 
 // Add Styled Components theme and global styles to all stories
 const addTheme = storyFn => (

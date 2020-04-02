@@ -4,7 +4,7 @@ import Card from './Card';
 const noop = () => {};
 
 export default {
-  title: 'Card',
+  title: '5 - Card',
   component: Card,
   parameters: {
     notes: 'Card, shows specific people detail.'

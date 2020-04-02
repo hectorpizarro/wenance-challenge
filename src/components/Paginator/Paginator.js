@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Button from '../../shared/Button/Button';
 import Styles from './Paginator.styles';
 
-const Paginator = ({ page, count, doPrevious, doNext }) => {
-  const totalPages = Math.ceil(parseInt(count, 10) / 10);
+const Paginator = ({ page, count, handlePrevious, handleNext }) => {
+  const totalPages = Math.ceil(count / 10) || 1;
 
   return (
     <Styles.Container>
@@ -12,8 +12,16 @@ const Paginator = ({ page, count, doPrevious, doNext }) => {
         Page {page} of {totalPages} ({count} results)
       </div>
       <div>
-        <Button label="Previous" disabled={page <= 1} onClick={doPrevious} />
-        <Button label="Next" disabled={page >= totalPages} onClick={doNext} />
+        <Button
+          label="Previous"
+          disabled={page <= 1}
+          onClick={handlePrevious}
+        />
+        <Button
+          label="Next"
+          disabled={page >= totalPages}
+          onClick={handleNext}
+        />
       </div>
     </Styles.Container>
   );
@@ -21,13 +29,13 @@ const Paginator = ({ page, count, doPrevious, doNext }) => {
 
 Paginator.propTypes = {
   // Current page
-  page: PropTypes.string.isRequired,
+  page: PropTypes.number.isRequired,
   // Total records
-  count: PropTypes.string.isRequired,
+  count: PropTypes.number.isRequired,
   // Handle click on Previous button
-  doPrevious: PropTypes.func.isRequired,
+  handlePrevious: PropTypes.func.isRequired,
   // Handle click on Next button
-  doNext: PropTypes.func.isRequired
+  handleNext: PropTypes.func.isRequired
 };
 
 export default Paginator;

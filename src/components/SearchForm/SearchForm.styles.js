@@ -6,10 +6,11 @@ const Container = styled.div`
   font-size: ${({ theme: { fontSize } }) => fontSize.tiny};
   height: ${({ theme: { dim } }) => dim.d7};
   justify-content: flex-end;
-  margin: ${({ theme: { dim } }) => dim.d2};
+  margin-bottom: ${({ theme: { dim } }) => dim.d3};
 
   @media (min-width: 640px) {
     font-size: ${({ theme: { fontSize } }) => fontSize.small};
+    margin-bottom: 0;
   }
 `;
 

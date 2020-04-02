@@ -4,7 +4,7 @@ import Button from './Button';
 const noop = () => {};
 
 export default {
-  title: 'Button',
+  title: '6 - Button',
   component: Button,
   parameters: {
     notes: 'Button, used on Search component and inside each card.'

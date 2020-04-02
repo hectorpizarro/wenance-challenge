@@ -4,10 +4,7 @@ import Button from '../../shared/Button/Button';
 import Styles from './Card.styles';
 
 const Card = ({ people, onDelete }) => {
-  const handleDelete = () => {
-    console.log('delete data for name', people.name);
-    onDelete(people.name);
-  };
+  const handleDelete = () => onDelete(people.name);
 
   return (
     <Styles.Container>
