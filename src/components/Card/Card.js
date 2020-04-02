@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Button from '../../shared/Button/Button';
 import Styles from './Card.styles';
+import { deletePeople } from '../../redux/people.slice';
 
-const Card = ({ people, onDelete }) => {
-  const handleDelete = () => onDelete(people.name);
+export const InternalCard = ({ people, onDelete }) => {
+  const handleDelete = () => onDelete({ name: people.name });
 
   return (
     <Styles.Container>
@@ -22,46 +24,19 @@ const Card = ({ people, onDelete }) => {
   );
 };
 
-Card.propTypes = {
+InternalCard.propTypes = {
   people: PropTypes.shape({
-    name: PropTypes.string,
-    height: PropTypes.string,
-    gender: PropTypes.string
+    name: PropTypes.string.isRequired,
+    height: PropTypes.string.isRequired,
+    gender: PropTypes.string.isRequired
   }).isRequired,
   onDelete: PropTypes.func.isRequired
 };
 
-export default Card;
+const mapDispatchToProps = {
+  onDelete: deletePeople
+};
 
-/*
-{
-      "name": "Luke Skywalker",
-      "height": "172",
-      "mass": "77",
-      "hair_color": "blond",
-      "skin_color": "fair",
-      "eye_color": "blue",
-      "birth_year": "19BBY",
-      "gender": "male",
-      "homeworld": "https://swapi.co/api/planets/1/",
-      "films": [
-        "https://swapi.co/api/films/2/",
-        "https://swapi.co/api/films/6/",
-        "https://swapi.co/api/films/3/",
-        "https://swapi.co/api/films/1/",
-        "https://swapi.co/api/films/7/"
-      ],
-      "species": ["https://swapi.co/api/species/1/"],
-      "vehicles": [
-        "https://swapi.co/api/vehicles/14/",
-        "https://swapi.co/api/vehicles/30/"
-      ],
-      "starships": [
-        "https://swapi.co/api/starships/12/",
-        "https://swapi.co/api/starships/22/"
-      ],
-      "created": "2014-12-09T13:50:51.644000Z",
-      "edited": "2014-12-20T21:17:56.891000Z",
-      "url": "https://swapi.co/api/people/1/"
-    }
-*/
+const Card = connect(null, mapDispatchToProps)(InternalCard);
+
+export default Card;

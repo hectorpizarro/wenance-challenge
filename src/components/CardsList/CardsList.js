@@ -3,14 +3,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Card from '../Card/Card';
 import Styles from './CardsList.styles';
+import { STATUS_IDLE } from '../../redux/people.slice';
 
-const InternalCardsList = ({
+export const InternalCardsList = ({
   isLoading,
   search,
   peopleList,
-  deletePeople,
-  error
+  error,
+  isIdle
 }) => {
+  if (isIdle) {
+    return null;
+  }
+
   if (isLoading) {
     return <Styles.Message>Loading...</Styles.Message>;
   }
@@ -30,7 +35,7 @@ const InternalCardsList = ({
       <div>Search term: &quot;{search}&quot;</div>
       <Styles.Grid>
         {peopleList.map(people => (
-          <Card key={people.name} people={people} onDelete={deletePeople} />
+          <Card key={people.name} people={people} />
         ))}
       </Styles.Grid>
     </Styles.ListContainer>
@@ -41,12 +46,13 @@ InternalCardsList.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   search: PropTypes.string.isRequired,
   peopleList: PropTypes.array.isRequired,
-  deletePeople: PropTypes.func.isRequired,
-  error: PropTypes.string.isRequired
+  error: PropTypes.string.isRequired,
+  isIdle: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  search: state.people.search
+  search: state.people.search,
+  isIdle: state.people.status === STATUS_IDLE
 });
 
 const CardsList = connect(mapStateToProps)(InternalCardsList);

@@ -16,8 +16,11 @@ export const STATUS_LOADED = 'status_loaded';
 export const peopleIdSelector = ({ search, page }) => `${search}___${page}`;
 
 export const peoplePageSelector = peopleState => {
-  const id = peopleIdSelector(peopleState);
-  return peopleState.byId[id] || { count: 0, records: [] };
+  const { search, page } = peopleState;
+  const id = peopleIdSelector({ search, page });
+  const pageData = peopleState.byId[id];
+
+  return pageData || { count: 0, records: [] };
 };
 
 const peopleSlice = createSlice({
@@ -34,10 +37,6 @@ const peopleSlice = createSlice({
       state.status = STATUS_LOADING;
       state.error = '';
     },
-    endLoading(state, action) {
-      state.status = STATUS_IDLE;
-      state.error = '';
-    },
     storeSearch(state, action) {
       const { search } = action.payload;
       state.search = search;
@@ -49,20 +48,31 @@ const peopleSlice = createSlice({
     },
     storePeople(state, action) {
       const { newSearch, pageData } = action.payload;
+      const { page } = state;
       state.search = newSearch;
       state.status = STATUS_LOADED;
       state.error = '';
-      state.byId[peopleIdSelector(state)] = pageData;
+      state.byId[peopleIdSelector({ search: newSearch, page })] = pageData;
+    },
+    deletePeople(state, action) {
+      const { name } = action.payload;
+      const { search, page, byId } = state;
+      const id = peopleIdSelector({ search, page });
+      if (state.byId[id]) {
+        state.byId[id].records = state.byId[id].records.filter(
+          record => record.name !== name
+        );
+      }
     }
   }
 });
 
 export const {
   startLoading,
-  endLoading,
   storeSearch,
   storeError,
-  storePeople
+  storePeople,
+  deletePeople
 } = peopleSlice.actions;
 
 // Async functions
@@ -93,8 +103,7 @@ export const fetchPeople = newSearch => async (dispatch, getState) => {
       records: results.map(({ name, height, gender }) => ({
         name,
         height,
-        gender,
-        enabled: true
+        gender
       }))
     };
     dispatch(storePeople({ newSearch, pageData }));

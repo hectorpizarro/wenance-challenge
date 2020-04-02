@@ -1,7 +1,6 @@
 import React from 'react';
-import Paginator from './Paginator';
-
-const noop = () => {};
+import { InternalPaginator as Paginator } from './Paginator';
+import { noop } from '../../../.storybook/utils';
 
 export default {
   title: '3 - Paginator',
@@ -12,17 +11,51 @@ export default {
 };
 
 export const NoPrevious = () => (
-  <Paginator page="1" count="30" handlePrevious={noop} handleNext={noop} />
+  <Paginator
+    page={1}
+    count={30}
+    disabled={false}
+    handlePrevious={noop}
+    handleNext={noop}
+  />
 );
 
 export const Default = () => (
-  <Paginator page="2" count="30" handlePrevious={noop} handleNext={noop} />
+  <Paginator
+    page={2}
+    count={30}
+    disabled={false}
+    handlePrevious={noop}
+    handleNext={noop}
+  />
 );
 
 export const NoNext = () => (
-  <Paginator page="3" count="30" handlePrevious={noop} handleNext={noop} />
+  <Paginator
+    page={3}
+    count={30}
+    disabled={false}
+    handlePrevious={noop}
+    handleNext={noop}
+  />
 );
 
 export const NoData = () => (
-  <Paginator page="1" count="0" handlePrevious={noop} handleNext={noop} />
+  <Paginator
+    page={1}
+    count={0}
+    disabled={false}
+    handlePrevious={noop}
+    handleNext={noop}
+  />
+);
+
+export const DisabledOnLoading = () => (
+  <Paginator
+    page={1}
+    count={0}
+    disabled
+    handlePrevious={noop}
+    handleNext={noop}
+  />
 );

@@ -8,8 +8,6 @@ import Styles from './Main.styles';
 import { STATUS_LOADING, peoplePageSelector } from '../redux/people.slice';
 
 export const InternalMain = ({ isLoading, page, peoplePage, error }) => {
-  const noop = () => {};
-
   const handlePrevious = () => {
     console.log('handle previous');
   };
@@ -34,7 +32,6 @@ export const InternalMain = ({ isLoading, page, peoplePage, error }) => {
         isLoading={isLoading}
         peopleList={peoplePage.records}
         error={error}
-        deletePeople={noop}
       />
     </Styles.Container>
   );
@@ -44,8 +41,8 @@ InternalMain.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   page: PropTypes.number.isRequired,
   peoplePage: PropTypes.shape({
-    count: PropTypes.number,
-    records: PropTypes.arrayOf(PropTypes.object)
+    count: PropTypes.number.isRequired,
+    records: PropTypes.arrayOf(PropTypes.object).isRequired
   }).isRequired,
   error: PropTypes.string.isRequired
 };

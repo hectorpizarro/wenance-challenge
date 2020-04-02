@@ -1,4 +1,4 @@
-const apiUrl = 'https://swapi.co/api/people';
+const apiUrl = 'https://swapi.co/api/people/';
 export const theme = {
   borderRadius: '6px',
   boxShadow:

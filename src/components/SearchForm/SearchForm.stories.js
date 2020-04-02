@@ -1,7 +1,6 @@
 import React from 'react';
 import { InternalSearchForm as SearchForm } from './SearchForm';
-
-const noop = () => {};
+import { noop } from '../../../.storybook/utils';
 
 export default {
   title: '2 - SearchForm',
@@ -12,12 +11,7 @@ export default {
 };
 
 export const Desktop1024x768 = () => (
-  <SearchForm
-    search="test"
-    handleSearch={noop}
-    handleUpdate={noop}
-    disabled={false}
-  />
+  <SearchForm search="test" handleSearch={noop} disabled={false} />
 );
 Desktop1024x768.story = {
   parameters: {
@@ -26,7 +20,7 @@ Desktop1024x768.story = {
 };
 
 export const DesktopDisabled = () => (
-  <SearchForm search="test" handleSearch={noop} handleUpdate={noop} disabled />
+  <SearchForm search="test" handleSearch={noop} disabled />
 );
 DesktopDisabled.story = {
   parameters: {
@@ -35,12 +29,7 @@ DesktopDisabled.story = {
 };
 
 export const Ipad = () => (
-  <SearchForm
-    search="test"
-    handleSearch={noop}
-    handleUpdate={noop}
-    disabled={false}
-  />
+  <SearchForm search="test" handleSearch={noop} disabled={false} />
 );
 Ipad.story = {
   parameters: {
@@ -49,12 +38,7 @@ Ipad.story = {
 };
 
 export const Width640px = () => (
-  <SearchForm
-    search="test"
-    handleSearch={noop}
-    handleUpdate={noop}
-    disabled={false}
-  />
+  <SearchForm search="test" handleSearch={noop} disabled={false} />
 );
 Width640px.story = {
   parameters: {
@@ -63,12 +47,7 @@ Width640px.story = {
 };
 
 export const Mobile = () => (
-  <SearchForm
-    search="test"
-    handleSearch={noop}
-    handleUpdate={noop}
-    disabled={false}
-  />
+  <SearchForm search="test" handleSearch={noop} disabled={false} />
 );
 Mobile.story = {
   parameters: {

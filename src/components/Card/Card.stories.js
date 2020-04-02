@@ -1,7 +1,6 @@
 import React from 'react';
-import Card from './Card';
-
-const noop = () => {};
+import { InternalCard as Card } from './Card';
+import { noop } from '../../../.storybook/utils';
 
 export default {
   title: '5 - Card',

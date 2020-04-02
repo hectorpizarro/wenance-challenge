@@ -1,14 +1,14 @@
 import React from 'react';
-import CardsList from './CardsList';
-
-const noop = () => {};
+import { InternalCardsList as CardsList } from './CardsList';
+import { addProviderDecorator } from '../../../.storybook/utils';
 
 export default {
   title: '4 - CardsList',
   component: CardsList,
   parameters: {
     notes: 'CardsList, lists people cards.'
-  }
+  },
+  decorators: [addProviderDecorator]
 };
 
 const peopleList = [
@@ -64,38 +64,63 @@ const peopleList = [
   }
 ];
 
+export const EmptyAtStart = () => (
+  <CardsList
+    isLoading
+    search="Apple"
+    peopleList={peopleList}
+    error="error"
+    isIdle
+  />
+);
+
 export const Loading = () => (
-  <CardsList isLoading peopleList={peopleList} deletePeople={noop} error="" />
+  <CardsList
+    isLoading
+    search="Apple"
+    peopleList={peopleList}
+    error=""
+    isIdle={false}
+  />
 );
 
 export const Error = () => (
   <CardsList
     isLoading={false}
+    search="Apple"
     peopleList={peopleList}
-    deletePeople={noop}
     error="No data"
+    isIdle={false}
   />
 );
 
 export const NoPeople = () => (
-  <CardsList isLoading={false} peopleList={[]} deletePeople={noop} error="" />
+  <CardsList
+    isLoading={false}
+    search="Apple"
+    peopleList={[]}
+    error=""
+    isIdle={false}
+  />
 );
 
 export const Desktop = () => (
   <CardsList
     isLoading={false}
+    search="Apple"
     peopleList={peopleList}
-    deletePeople={noop}
     error=""
+    isIdle={false}
   />
 );
 
 export const Mobile = () => (
   <CardsList
     isLoading={false}
+    search="Apple"
     peopleList={peopleList}
-    deletePeople={noop}
     error=""
+    isIdle={false}
   />
 );
 Mobile.story = {

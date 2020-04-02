@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from './Button';
-
-const noop = () => {};
+import { noop } from '../../../.storybook/utils';
 
 export default {
   title: '6 - Button',
