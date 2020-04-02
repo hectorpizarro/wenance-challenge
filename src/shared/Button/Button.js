@@ -1,3 +1,6 @@
+/**
+ * Button component used on Card, Paginator, SearchForm.
+ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Styles from './Button.styles';

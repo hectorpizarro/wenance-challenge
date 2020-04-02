@@ -1,6 +1,14 @@
+/**
+ * CardsList storybooks tests
+ */
 import React from 'react';
 import { InternalCardsList as CardsList } from './CardsList';
 import { addProviderDecorator } from '../../../.storybook/utils';
+import {
+  STATUS_LOADING,
+  STATUS_IDLE,
+  STATUS_LOADED
+} from '../../redux/people.slice';
 
 export default {
   title: '4 - CardsList',
@@ -11,6 +19,7 @@ export default {
   decorators: [addProviderDecorator]
 };
 
+// Mock cards data to show in a list
 const peopleList = [
   {
     name: 'Luke Skywalker',
@@ -66,61 +75,50 @@ const peopleList = [
 
 export const EmptyAtStart = () => (
   <CardsList
-    isLoading
+    status={STATUS_IDLE}
     search="Apple"
     peopleList={peopleList}
     error="error"
-    isIdle
   />
 );
 
 export const Loading = () => (
   <CardsList
-    isLoading
+    status={STATUS_LOADING}
     search="Apple"
     peopleList={peopleList}
     error=""
-    isIdle={false}
   />
 );
 
 export const Error = () => (
   <CardsList
-    isLoading={false}
+    status={STATUS_LOADED}
     search="Apple"
     peopleList={peopleList}
     error="No data"
-    isIdle={false}
   />
 );
 
 export const NoPeople = () => (
-  <CardsList
-    isLoading={false}
-    search="Apple"
-    peopleList={[]}
-    error=""
-    isIdle={false}
-  />
+  <CardsList status={STATUS_LOADED} search="Apple" peopleList={[]} error="" />
 );
 
 export const Desktop = () => (
   <CardsList
-    isLoading={false}
+    status={STATUS_LOADED}
     search="Apple"
     peopleList={peopleList}
     error=""
-    isIdle={false}
   />
 );
 
 export const Mobile = () => (
   <CardsList
-    isLoading={false}
+    status={STATUS_LOADED}
     search="Apple"
     peopleList={peopleList}
     error=""
-    isIdle={false}
   />
 );
 Mobile.story = {

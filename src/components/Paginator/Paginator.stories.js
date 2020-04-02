@@ -1,3 +1,6 @@
+/**
+ * Paginator storybook tests
+ */
 import React from 'react';
 import { InternalPaginator as Paginator } from './Paginator';
 import { noop } from '../../../.storybook/utils';

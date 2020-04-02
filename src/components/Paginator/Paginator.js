@@ -1,3 +1,6 @@
+/**
+ * Paginator shows 'Loading' message if disabled flag is TRUE, otherwise current page, total pages and buttons to go back or next page.
+ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -5,6 +8,7 @@ import Button from '../../shared/Button/Button';
 import Styles from './Paginator.styles';
 import { STATUS_LOADING } from '../../redux/people.slice';
 
+// Basic component exported for testing purposes
 export const InternalPaginator = ({
   page,
   count,
@@ -12,6 +16,7 @@ export const InternalPaginator = ({
   handlePrevious,
   handleNext
 }) => {
+  // Calc total pages based on API response count value. API page is always 10
   const totalPages = Math.ceil(count / 10) || 1;
 
   return (
@@ -54,5 +59,6 @@ const mapStateToProps = state => ({
   disabled: state.people.status === STATUS_LOADING
 });
 
+// Connect basic component to Redux store
 const Paginator = connect(mapStateToProps)(InternalPaginator);
 export default Paginator;

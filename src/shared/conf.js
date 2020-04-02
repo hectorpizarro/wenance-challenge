@@ -1,4 +1,11 @@
-const apiUrl = 'https://swapi.co/api/people/';
+/**
+ * Global constants, used in all the app
+ */
+
+// API url used on async requests
+export const apiUrl = 'https://swapi.co/api/people/';
+
+// Styled components theme
 export const theme = {
   borderRadius: '6px',
   boxShadow:
@@ -33,9 +40,3 @@ export const theme = {
     d10: '4rem'
   }
 };
-
-const conf = {
-  apiUrl
-};
-
-export default conf;

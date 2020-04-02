@@ -1,5 +1,5 @@
 /**
- * Manages Redux storage
+ * Redux storage
  */
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   people
 });
 
-// Redux dev tools only available on dev environment
+// Provides thunk, Redux dev tools on dev environment
 const store = configureStore({ reducer: rootReducer });
 
 export default store;

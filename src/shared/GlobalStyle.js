@@ -1,3 +1,6 @@
+/**
+ * Styled components component to set global CSS
+ */
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`

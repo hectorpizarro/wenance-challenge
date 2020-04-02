@@ -1,3 +1,6 @@
+/**
+ * CardsList styled components
+ */
 import styled from 'styled-components';
 
 const Message = styled.div`

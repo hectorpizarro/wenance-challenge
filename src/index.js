@@ -1,3 +1,8 @@
+/**
+ * Initial js for SPA. Setup:
+ * - Redux store
+ * - Styled components theme and global CSS (GlobalStyle).
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'normalize.css';

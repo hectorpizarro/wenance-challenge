@@ -5,11 +5,37 @@ import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { theme } from '../src/shared/conf';
 import GlobalStyle from '../src/shared/GlobalStyle';
-import people from '../src/redux/people.slice';
+import people, {
+  STATUS_LOADING,
+  STATUS_LOADED
+} from '../src/redux/people.slice';
 
-export const addProviderDecorator = storyFn => {
+const preloadedStateLoading = {
+  people: {
+    byId: {},
+    search: '',
+    page: 1,
+    status: STATUS_LOADING,
+    error: ''
+  }
+};
+
+const preloadedStateDefault = {
+  people: {
+    byId: {},
+    search: '',
+    page: 1,
+    status: STATUS_LOADED,
+    error: ''
+  }
+};
+
+export const addProviderDecorator = (storyFn, isLoading) => {
   const rootReducer = combineReducers({ people });
-  const store = configureStore({ reducer: rootReducer });
+  const preloadedState = isLoading
+    ? preloadedStateLoading
+    : preloadedStateDefault;
+  const store = configureStore({ reducer: rootReducer, preloadedState });
 
   return (
     <Provider store={store}>
@@ -20,5 +46,8 @@ export const addProviderDecorator = storyFn => {
     </Provider>
   );
 };
+
+export const addProviderDecoratorLoading = storyFn =>
+  addProviderDecorator(storyFn, 'loading');
 
 export const noop = () => {};

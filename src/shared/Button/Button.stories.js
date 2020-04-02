@@ -1,3 +1,6 @@
+/**
+ * Button Storybook tests
+ */
 import React from 'react';
 import Button from './Button';
 import { noop } from '../../../.storybook/utils';
@@ -6,7 +9,7 @@ export default {
   title: '6 - Button',
   component: Button,
   parameters: {
-    notes: 'Button, used on Search component and inside each card.'
+    notes: 'Button, used on Search, Card, Paginator.'
   }
 };
 

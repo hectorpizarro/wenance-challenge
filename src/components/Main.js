@@ -1,3 +1,6 @@
+/**
+ * Main page
+ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -5,9 +8,10 @@ import SearchForm from './SearchForm/SearchForm';
 import CardsList from './CardsList/CardsList';
 import Paginator from './Paginator/Paginator';
 import Styles from './Main.styles';
-import { STATUS_LOADING, peoplePageSelector } from '../redux/people.slice';
+import { peoplePageSelector } from '../redux/people.slice';
 
-export const InternalMain = ({ isLoading, page, peoplePage, error }) => {
+// Export basic component for testing purposes
+export const InternalMain = ({ page, peoplePage }) => {
   const handlePrevious = () => {
     console.log('handle previous');
   };
@@ -28,34 +32,27 @@ export const InternalMain = ({ isLoading, page, peoplePage, error }) => {
           handleNext={handleNext}
         />
       </Styles.TopRow>
-      <CardsList
-        isLoading={isLoading}
-        peopleList={peoplePage.records}
-        error={error}
-      />
+      <CardsList peopleList={peoplePage.records} />
     </Styles.Container>
   );
 };
 
 InternalMain.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+  // Current page
   page: PropTypes.number.isRequired,
+  // Data to show in current page
   peoplePage: PropTypes.shape({
     count: PropTypes.number.isRequired,
     records: PropTypes.arrayOf(PropTypes.object).isRequired
-  }).isRequired,
-  error: PropTypes.string.isRequired
+  }).isRequired
 };
 
 const mapStateToProps = state => ({
-  isLoading: state.people.status === STATUS_LOADING,
   page: state.people.page,
-  peoplePage: peoplePageSelector(state.people),
-  error: state.people.error
+  peoplePage: peoplePageSelector(state.people)
 });
 
-const mapDispatchToProps = {};
-
-const Main = connect(mapStateToProps, mapDispatchToProps)(InternalMain);
+// Connect basic component to Redux store
+const Main = connect(mapStateToProps)(InternalMain);
 
 export default Main;

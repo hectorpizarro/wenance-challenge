@@ -1,3 +1,6 @@
+/**
+ * SearchForm Storybook tests
+ */
 import React from 'react';
 import { InternalSearchForm as SearchForm } from './SearchForm';
 import { noop } from '../../../.storybook/utils';

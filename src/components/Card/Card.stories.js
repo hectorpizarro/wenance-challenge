@@ -1,3 +1,6 @@
+/**
+ * Card Storybook tests
+ */
 import React from 'react';
 import { InternalCard as Card } from './Card';
 import { noop } from '../../../.storybook/utils';
@@ -10,6 +13,7 @@ export default {
   }
 };
 
+// Mock data for a single Card
 const people = {
   name: 'Luke Skywalker',
   height: '172',
