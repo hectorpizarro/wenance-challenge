@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'normalize.css';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import Main from './components/Main';
+import { theme } from './shared/conf';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+export const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: Helvetica, sans-serif;
+    font-size: ${({ theme: { fontSize } }) => fontSize.small};
+  }
+
+  input, button {
+    outline: 0;
+  }
+
+  h2 {
+    font-size: ${({ theme: { fontSize } }) => fontSize.large};
+  }
+`;
+
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <GlobalStyle />
+    <div>
+      <h2>Wenance Challenge - Star Wars People</h2>
+      <Main />
     </div>
-  );
-}
+  </ThemeProvider>
+);
 
 export default App;
