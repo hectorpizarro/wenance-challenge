@@ -11,6 +11,10 @@ actions, reducers were created using Redux Toolkit
 I didn't add functionality for pagination as it was out of the challenge's
 scope, but created the component anyway to show current page and pages total.
 
+Each search is stored in Redux. If the user searches a term that was previously
+requested the app will return the stored data, this way we prevent a new API
+request.
+
 Install the project using:
 
 npm i
@@ -25,8 +29,13 @@ I use Visual Studio Code for development. The project includes Eslint and
 Prettier to assure standard format and good code practices. The configuration is
 available in .eslintrc.js and .prettierrc.js.
 
-CSS The app styles were standarized using normalize.css. All components CSS were
-built using Styled Components:
+CSS
+
+The app styles were standarized using normalize.css, for this challenge it has
+been built and tested using Brave and Chrome. All component styles were built
+using Styled Components. Each component has a \*.styles.js inside the same
+folder with all the styled componnets defined, this way we can keep apart styles
+from the component internal logic.
 
 - Global CSS was defined using createGlobalStyle(), see
   src/shared/GlobalStyle.js.
@@ -50,3 +59,9 @@ There are two sets of tests:
   are named \*.test.js. Run the tests using:
 
   npm run test
+
+CAVEAT
+
+I found a conflict between storybook and react-scripts, both provided different
+versions for the webpack package dependency. I solved the problem and the app
+should build fine, but if there is an issue please contact me to check again.
