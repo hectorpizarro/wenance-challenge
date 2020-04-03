@@ -1,68 +1,52 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+WENANCE Challenge
 
-## Available Scripts
+The code is a development challenge developed for Wenance in 2 days. The app
+loads data from the Star Wars API, provides a search form and allows to delete
+records from the Redux store.
 
-In the project directory, you can run:
+All elements are responsive and should look fine on mobile. Redux slice,
+actions, reducers were created using Redux Toolkit
+(https://redux-toolkit.js.org/) the new solution recommended by Redux.
 
-### `npm start`
+I didn't add functionality for pagination as it was out of the challenge's
+scope, but created the component anyway to show current page and pages total.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Install the project using:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+npm i
 
-### `npm test`
+Then run the app using:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+npm start
 
-### `npm run build`
+CODE FORMAT / IDE CONFIGURATION
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I use Visual Studio Code for development. The project includes Eslint and
+Prettier to assure standard format and good code practices. The configuration is
+available in .eslintrc.js and .prettierrc.js.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+CSS The app styles were standarized using normalize.css. All components CSS were
+built using Styled Components:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Global CSS was defined using createGlobalStyle(), see
+  src/shared/GlobalStyle.js.
+- A global theme was applied using ThemeProvider on index.js.
 
-### `npm run eject`
+TESTS
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+There are two sets of tests:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- I used Storybook to test the UI/UIX for all components. All storybook tests
+  are included in \*.stories.js files. Run the webapp to see the tests
+  executing:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  npm run storybook
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  A JS warning is shown the first time storybook is executed, this is a known
+  issue as decribed in (https://github.com/storybookjs/storybook/issues/10204)
+  and has no impact on tests.
 
-## Learn More
+- I added unit tests for the Redux slice and the CardsList component. Unit tests
+  are named \*.test.js. Run the tests using:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+  npm run test
