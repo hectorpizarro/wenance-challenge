@@ -4,33 +4,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import SearchForm from './SearchForm/SearchForm';
-import CardsList from './CardsList/CardsList';
-import Paginator from './Paginator/Paginator';
+import SearchForm from '../SearchForm/SearchForm';
+import CardsList from '../CardsList/CardsList';
+import Paginator from '../Paginator/Paginator';
 import Styles from './Main.styles';
-import { peoplePageSelector } from '../redux/people.slice';
+import { peoplePageSelector } from '../../redux/people.slice';
 
 // Export basic component for testing purposes
-export const InternalMain = ({ page, peoplePage }) => {
-  const handlePrevious = () => {
-    console.log('handle previous');
-  };
-
-  const handleNext = () => {
-    console.log('handle next');
-  };
-
+export const InternalMain = ({ peoplePage }) => {
   return (
     <Styles.Container>
-      <h2>Wenance Challenge - Star Wars People</h2>
+      <h2>Wenance Challenge</h2>
       <Styles.TopRow>
         <SearchForm />
-        <Paginator
-          page={page}
-          count={peoplePage.count}
-          handlePrevious={handlePrevious}
-          handleNext={handleNext}
-        />
+        <Paginator count={peoplePage.count} />
       </Styles.TopRow>
       <CardsList peopleList={peoplePage.records} />
     </Styles.Container>
@@ -38,8 +25,6 @@ export const InternalMain = ({ page, peoplePage }) => {
 };
 
 InternalMain.propTypes = {
-  // Current page
-  page: PropTypes.number.isRequired,
   // Data to show in current page
   peoplePage: PropTypes.shape({
     count: PropTypes.number.isRequired,
@@ -48,7 +33,6 @@ InternalMain.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  page: state.people.page,
   peoplePage: peoplePageSelector(state.people)
 });
 

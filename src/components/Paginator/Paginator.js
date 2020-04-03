@@ -9,15 +9,17 @@ import Styles from './Paginator.styles';
 import { STATUS_LOADING } from '../../redux/people.slice';
 
 // Basic component exported for testing purposes
-export const InternalPaginator = ({
-  page,
-  count,
-  disabled,
-  handlePrevious,
-  handleNext
-}) => {
+export const InternalPaginator = ({ page, count, disabled }) => {
   // Calc total pages based on API response count value. API page is always 10
   const totalPages = Math.ceil(count / 10) || 1;
+
+  const handlePrevious = () => {
+    alert('To be developed');
+  };
+
+  const handleNext = () => {
+    alert('To be developed');
+  };
 
   return (
     <Styles.Container>
@@ -48,14 +50,11 @@ InternalPaginator.propTypes = {
   // Total records
   count: PropTypes.number.isRequired,
   // Flag to hide text if page is loading
-  disabled: PropTypes.bool.isRequired,
-  // Handle click on Previous button
-  handlePrevious: PropTypes.func.isRequired,
-  // Handle click on Next button
-  handleNext: PropTypes.func.isRequired
+  disabled: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
+  page: state.people.page,
   disabled: state.people.status === STATUS_LOADING
 });
 

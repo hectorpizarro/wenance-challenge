@@ -74,9 +74,10 @@ const peopleSlice = createSlice({
     },
     deletePeople(state, action) {
       const { name } = action.payload;
-      const { search, page, byId } = state;
+      const { search, page } = state;
       const id = peopleIdSelector({ search, page });
       if (state.byId[id]) {
+        state.byId[id].count -= 1;
         state.byId[id].records = state.byId[id].records.filter(
           record => record.name !== name
         );
@@ -138,7 +139,7 @@ export const fetchPeople = newSearch => async (dispatch, getState) => {
     };
     dispatch(storePeople({ newSearch, pageData }));
   } catch (error) {
-    dispatch(storeError(error.message));
+    dispatch(storeError({ error: error.message }));
   }
 };
 

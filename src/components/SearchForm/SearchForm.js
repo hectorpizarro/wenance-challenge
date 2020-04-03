@@ -9,7 +9,7 @@ import Button from '../../shared/Button/Button';
 import { fetchPeople, STATUS_LOADING } from '../../redux/people.slice';
 
 // Export basic component for test purposes
-export const InternalSearchForm = ({ disabled, search, handleSearch }) => {
+export const InternalSearchForm = ({ disabled, handleSearch }) => {
   // User can change the input value locally. This value will be stored on the Redux slice only when user clicks the button.
   const [searchValue, setSearchValue] = useState('');
 
@@ -28,13 +28,6 @@ export const InternalSearchForm = ({ disabled, search, handleSearch }) => {
   }, []);
 
   /**
-   * Update local state if Redux slice updates search
-   */
-  useEffect(() => {
-    setSearchValue(search);
-  }, [search]);
-
-  /**
    * Update local state everytime the input changes value
    * @param {Object} event - Change input event
    */
@@ -49,7 +42,7 @@ export const InternalSearchForm = ({ disabled, search, handleSearch }) => {
         type="text"
         value={searchValue}
         onChange={handleChange}
-        maxlength="5"
+        maxLength="20"
         placeholder="Enter name"
         disabled={disabled}
       />
@@ -61,15 +54,12 @@ export const InternalSearchForm = ({ disabled, search, handleSearch }) => {
 InternalSearchForm.propTypes = {
   // Input and button are disabled if TRUE
   disabled: PropTypes.bool.isRequired,
-  // Search string shown inside field
-  search: PropTypes.string.isRequired,
   // Function to apply a new search
   handleSearch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  disabled: state.people.status === STATUS_LOADING,
-  search: state.people.search
+  disabled: state.people.status === STATUS_LOADING
 });
 
 const mapDispatchToProps = {

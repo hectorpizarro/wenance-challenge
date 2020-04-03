@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import Main from './Main';
-import { addProviderDecoratorLoading } from '../../.storybook/utils';
+import { addProviderDecoratorLoading } from '../../../.storybook/utils';
 
 export default {
   title: '1 - Main',
